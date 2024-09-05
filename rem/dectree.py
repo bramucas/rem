@@ -144,7 +144,7 @@ class explain:
 			if (sufficient_reason is False or sufficient_reason is None) and necessary_reason is True:
 				return self.__output_text_nr(complete_explain(remove_subsumed(complete_reason)).necessary_reason())
 
-			elif sufficient_reason is True and (necessary_reason is False or necessary_reason is None):
+			elif (sufficient_reason is True or type(sufficient_reason) == int) and (necessary_reason is False or necessary_reason is None):
 				return self.__output_text_sr(complete_explain(remove_subsumed(complete_reason)).sufficient_reason(sufficient_reason))
 
 			elif sufficient_reason is not None and necessary_reason is True:

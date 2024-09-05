@@ -69,19 +69,13 @@ class complete_explain: #class to manage the sufficient and necessary reasons
 
 
         suf_reasons = product(*self.complete_explanation)
-        ouput = []
+        output = []
 
-
-
-        if type(k) != int and type(k) != bool:
-            raise valueError("The provided value of k is not valid")
-
-        if k == True:
+        if type(k) == bool:
             return [set(com) for com in suf_reasons]
         else:
-            if k == 0 or k is None:
+            if k == 0:
                 return None
-
             else:
                 for i in range(0,k):
                     try:
