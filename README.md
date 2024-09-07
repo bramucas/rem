@@ -25,7 +25,7 @@ Except for the dectree.py file, the rest of the files are simply auxiliary to ca
 
 ## Input format
 
-You have to provide a dictionary with at least two keys: "feature_names" and "model". In the "model" key, remains the object from scikit-learn which is the decision tree on which the algorithm will be applied. 
+You have to provide a dictionary with at least two keys: "feature_names" and "dt_model". In the "dt_model" key, remains the object from scikit-learn which is the decision tree on which the algorithm will be applied. 
 
 **The case for "feature_names" it's actually important for the output text of the results**. 
 
@@ -36,9 +36,9 @@ For example:
 
 #dt_model would be the object of scikit_learn that it's the model of your decision tree
 
-data_dict = {"model":DecisionTreeClassifier(), "feature_names":["var1","var2","var3"]}
+data_dict = {"dt_model":DecisionTreeClassifier(), "feature_names":["var1","var2","var3"]}
 
-feature_num = dt_model.tree_.feature[node_num] #the feature that it's being evaluated in the node: node_num
+feature_num = data_dict["dt_model"].tree_.feature[node_num] #the feature that it's being evaluated in the node: node_num
 
 #if feature_num is the corresponding "var3", in other words, if feature_num is equal to 2, then the name "var3" would be in the index 2 of data_dict["feature_names"]
 
