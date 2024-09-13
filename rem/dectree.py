@@ -5,7 +5,7 @@ from rem.auxfunc import *
 
 
 
-class explain:
+class Explain:
 
 
 	def __init__(self, dec_tree, instance, decision):
@@ -183,7 +183,6 @@ class explain:
 	            feature = self.dec_tree.dt_model.tree_.feature[path[index]]
 	      
 	            literal = self.instance[feature]
-	            literals = self.dec_tree.variables[feature]
 
 	            threshold = self.dec_tree.dt_model.tree_.threshold[path[index]]
 
@@ -192,18 +191,14 @@ class explain:
 	              if literal.sup > threshold:
 	                pass
 	              else:
-	                for clave, val in literals.items():
-	                  if val.sup <= threshold:
-	                    product.add(val)            
+	                product.add(Interval(-oo, threshold, right_open = False, feature = feature))          
 
 	            elif path[index +1]  == self.dec_tree.dt_model.tree_.children_left[path[index]]:
 
 	              if literal.sup <= threshold:
 	                pass
 	              else:
-	                for clave, val in literals.items():               
-	                  if val.sup > threshold:
-	                    product.add(val)
+	              	product.add(Interval(threshold, +oo, left_open = True, feature = feature))
 	          
 	        general_reason.append(product)
 
@@ -222,17 +217,17 @@ class explain:
 
 
 
-class decisionTree:
+class DecisionTree:
 
 	variables = []
 
-	def __init__(self, data_dict):
+	def __init__(self, dt_model):
 
-		self.dt_model = data_dict['model']
-		self.name_vars = data_dict['feature_names']
+		self.dt_model = dt_model
+		self.name_vars = dt_model.feature_names_in_
 
-		for i, fname in enumerate(self.name_vars):
-			self.variables.append(self.__discretize(i,data_dict['model']))
+		for i in range(0,dt_model.n_features_in_):
+			self.variables.append(self.__discretize(i,dt_model))
 
 	
 	def __discretize(self, feature ,dt_model): #it codifies all the variables of the tree into discrete literals
