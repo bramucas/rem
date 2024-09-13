@@ -25,39 +25,28 @@ Except for the dectree.py file, the rest of the files are simply auxiliary to ca
 
 ## Input format
 
-You have to provide a dictionary with at least two keys: "feature_names" and "dt_model". In the "dt_model" key, remains the object from scikit-learn which is the decision tree on which the algorithm will be applied. 
-
-**The case for "feature_names" it's actually important for the output text of the results**. 
-
-For the key "feature_names" you have to provide a list with the names of the features of your decision tree ordered in the same manner as they appear in your decision tree.
-
-For example:
-```python 
-
-#dt_model would be the object of scikit_learn that it's the model of your decision tree
-
-data_dict = {"dt_model":DecisionTreeClassifier(), "feature_names":["var1","var2","var3"]}
-
-feature_num = data_dict["dt_model"].tree_.feature[node_num] #the feature that it's being evaluated in the node: node_num
-
-#if feature_num is the corresponding "var3", in other words, if feature_num is equal to 2, then the name "var3" would be in the index 2 of data_dict["feature_names"]
-
-
-```
-finally, you would provide **data_dict**
-
-## USAGE
-
-Having previously obtained the dictionary **data_dict**, then you can use this tool as following...
+You have to provide only the object from scikit-learn that represent your decision tree. 
+ 
+An example procedure will be the following: 
 
 ```python
 
 from rem import dectree as rt
 
-decision_tree = rt.decisionTree(data_dict) #this object encodes the corresponding literals of your decision tree
+
+dt_model = DecisionTreeClassifier() #this is your decision tree
+
+#you have to pass this variable to the "DecisionTree" class found in dectree.py
+
+decision_tree = rt.DecisionTree(dt_model) #the only purpose of this class is to encode the 	literals obtained from your decision tree
+
 
 ```
-If you want to see the corresponding variables associated with each feature, then just print the internal variable of the object decision_tree:
+To obtain explanations to the decisions made, you will have to save the variable "decision_tree" for future uses.
+
+## Usage
+
+If you want to see the corresponding variables associated with each feature of your decision tree, then just print the internal variable of the object decision_tree:
 
 ```python
 
@@ -74,13 +63,13 @@ You have to define the corresponding objects to compute the explanations...
 
 from rem import dectree as rt
 
-decision_tree = rt.decisionTree(data_dict) #input the inital dictionary
+decision_tree = rt.DecisionTree(dt_model) 
 
 instance = [1,2,3,4,5,6,7] #has to be mandatorily in a format of type list
 
 final_prediction = 1 #or 0 if the classifier it's binary, or any other integer if it's multi-class.
 
-explanation = rt.explain(decision_tree, instance, final_prediction) #this is not explanation yet.
+explanation = rt.Explain(decision_tree, instance, final_prediction) #this is not explanation yet.
 
 ```
 
