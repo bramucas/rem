@@ -71,11 +71,6 @@ class Interval:
 	def rightOpen(self, cond):
 		self.rightOpened = cond
 					
-	def left(self):
-		return self.left
-	
-	def right(self):
-		return self.right
 
 	def isLeftOpened(self):
 		return self.leftOpened
@@ -83,5 +78,3 @@ class Interval:
 	def isRightOpened(self):
 		return self.rightOpened
 				
-	def var(self):
-		return self.var					
