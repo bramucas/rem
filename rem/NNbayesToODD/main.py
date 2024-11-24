@@ -20,11 +20,7 @@ class NaiveBayesToOdd: #representa el procedimiento de pasar de naive bayes a od
 	
 		for clave, valor in self.cache[num_cache].items():
 			if prob in clave:
-
-				print(f"{clave}:{valor}\n")
 				return (clave, valor)
-
-
 
 		return None			
 
@@ -64,7 +60,6 @@ class NaiveBayesToOdd: #representa el procedimiento de pasar de naive bayes a od
 		nodeVar = Node(f"Var {k}", None, None)
 		intervalVar = Interval(-oo, oo, f"Var {k}")
 
-		print(k)
 		for i in range(0,2):
  
 			if(i == 1):
