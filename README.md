@@ -10,6 +10,10 @@ REasoned Models: a tool for explaining ML models outcome
 2. Darwiche, A., & Chunxi, Ji. (2023). A New Class of Explanations for Classifiers with
 Non-Binary Features
 
+3. Chan, H., & Darwiche, A. (2003). Reasoning about Bayesian network classifiers. 
+
+4. Shi, W. , Shih, A. , Darwiche, A. , Choi, A. (2020). On Tractable Representations of Binary Neural Networks
+
 
 ## /rem content
 
